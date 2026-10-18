@@ -140,6 +140,12 @@ and troubleshooting.
 sh zeroichi/src/zeroichi-c/build.sh <libjpeg-turbo source> <its ARM build dir>
 ```
 
+## Say hello and help out
+
+- **Questions, ideas or photos you took?** Join the [Discussions](../../discussions).
+- **Something not working?** Open an [issue](../../issues/new/choose).
+- **Want to help more?** See [CONTRIBUTING.md](CONTRIBUTING.md).
+
 ## Credits
 
 - Designed by **thegilai**. The code was written with the help of **Claude**

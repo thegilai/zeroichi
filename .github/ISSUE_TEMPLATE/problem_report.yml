@@ -1,0 +1,27 @@
+name: Something isn't working
+description: Tell us about a problem
+labels: ["bug"]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What did you do, and what went wrong?
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: You can find it in MENU > About.
+      placeholder: v0.1.0
+  - type: dropdown
+    id: screen
+    attributes:
+      label: Your screen
+      options: ["1.3inch (square)", "2.8inch (wide)", "Other / not sure"]
+  - type: textarea
+    id: logs
+    attributes:
+      label: Log files (optional, but very helpful)
+      description: Drag in zeroichi-log.txt and boot-time.txt from the zeroichi folder on the camera's SD card.

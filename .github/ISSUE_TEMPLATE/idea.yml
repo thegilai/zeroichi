@@ -1,0 +1,11 @@
+name: I have an idea
+description: Suggest a new look or feature
+labels: ["idea"]
+body:
+  - type: textarea
+    id: idea
+    attributes:
+      label: Your idea
+      description: What would you like Zero Ichi to do?
+    validations:
+      required: true
