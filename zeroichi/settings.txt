@@ -1,0 +1,101 @@
+# Zero Ichi settings - edit with any text editor.
+# Lines starting with # are ignored. Changes apply after the next reboot.
+# (Camera settings like rotation, image ratio and filter are in the on-screen MENU
+#  instead - press the joystick. Everything you set there is kept in this
+#  folder too: state.json, and your presets in the "presets" folder.)
+
+# Where photos, GIFs and videos are saved. "auto": the "photos" folder on the
+# card's drive (ZEROICHI - or bootfs, before Zero Ichi set the card up; on cards
+# with a separate PHOTOS drive: there). (Or a folder of your own.)
+photo_dir = auto
+
+# Photo space - using the whole card: "auto" = Zero Ichi sets the card up by
+# itself at the first start (a 10 second countdown, KEY2 = later), or "menu" =
+# only when you choose MENU > Photo space: auto / menu
+photo_space = auto
+
+# Swap red and blue if the CAMERA colours look wrong: yes / no
+swap_rb = no
+
+# Holding KEY3 for 3 seconds powers off the Pi: yes / no
+allow_shutdown = yes
+
+# Faster start-up: turns off services Zero Ichi doesn't need and starts Zero Ichi
+# early in the boot. Set to "no" to undo all of it: yes / no
+optimize_boot = yes
+
+# Fast start: the Pi skips the normal Linux start-up and starts straight into
+# Zero Ichi (only the screen and camera drivers are loaded). "no" = the normal
+# start-up (from the next start). Holding KEY1 while switching on also gives
+# the normal start-up, just that once: yes / no
+fast_start = yes
+
+# Which Zero Ichi runs: "c" = the quick one (a small C program: the camera is
+# ready in a few seconds - needs the fast start above) or "python" = the
+# original Python Zero Ichi (slower to open). The Python one also takes over by
+# itself if the quick one can't run. Same looks, buttons, menu and files: c / python
+app = c
+
+# Write a system report (zeroichi-diagnostics.txt) at every start.
+# Only for troubleshooting - it makes start-up much slower: yes / no
+diagnostics = no
+
+# Show a test pattern instead of the camera (for testing): yes / no
+no_camera = no
+
+
+# ----------------------------------------------------------------- DISPLAY
+# Which screen is connected:
+#   2.8inch-hat      2.8inch display hat, 320x240 (ST7789)
+#   1.3inch-hat      Waveshare 1.3inch LCD HAT, 240x240 (the original)
+#   st7789-320x240   other 320x240 ST7789 screens, e.g. Waveshare 2inch LCD
+#   ili9341-320x240  320x240 ILI9341 screens, e.g. Waveshare 2.4 / 2.8inch LCD
+# (The 2.8inch hat and the 1.3inch HAT use the same pins and buttons, so
+#  switching between them only needs this one line.)
+# Each Zero Ichi remembers its own screen: this line is only the
+# starting point for a Zero Ichi the card hasn't met yet (new cards: 240x240).
+# To change one Zero Ichi's screen, use MENU > Screen on it (or hold KEY2 while
+# switching on).
+display = 1.3inch-hat
+
+# Only change these if the picture on the screen looks wrong:
+#   display_invert  yes / no   - colours look like a photo negative
+#   display_madctl  picture is mirrored or sideways. Try, in order:
+#                   ST7789:  0x60  0xA0  0x20  0xE0
+#                   ILI9341: 0x28  0xE8  0x68  0xA8
+#                   (ILI9341 red/blue swapped: subtract 0x08, e.g. 0x20)
+#   (upside down? use "Flip screen" in the on-screen menu instead)
+display_invert = auto
+display_madctl = auto
+
+# Screen data speed in Hz. 40000000 is safe for these screens.
+# Faster (e.g. 62500000) can make the live view a bit smoother (it runs at
+# up to 30 pictures a second - the screen's data speed then limits it a
+# little), but some screens show glitches - then go back to 40000000.
+# spi_speed = 40000000
+
+# Colour format sent to the screen: 16 (default; a third less data to send,
+# and the live view makes its pictures in this format directly - the
+# smoothest) or 18 (a touch finer colour gradients, more work per frame).
+# display_bits = 16
+
+# Display wiring (BCM GPIO numbers). "auto" = the display's usual wiring:
+#   2.8inch-hat, 1.3inch-hat:     DC 25, RST 27, BL 24, CS = CE0
+#   other 320x240 screens:        DC 25, RST 27, BL 18, CS = CE0
+pin_dc = auto
+pin_rst = auto
+pin_bl = auto
+spi_cs = auto      # 0 = CE0 (GPIO 8), 1 = CE1 (GPIO 7)
+
+# --------------------------------------------------------------- BUTTONS
+# BCM GPIO numbers; each button connects its pin to GND.
+# "auto" = the 1.3inch HAT / 2.8inch hat: up 6, down 19, left 5,
+#          right 26, press 13, key1 21, key2 20, key3 16
+pin_up = auto
+pin_down = auto
+pin_left = auto
+pin_right = auto
+pin_press = auto
+pin_key1 = auto
+pin_key2 = auto
+pin_key3 = auto

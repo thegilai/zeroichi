@@ -1,0 +1,1 @@
+Not started yet. Run GET-PACKAGES.bat (on your PC), then boot the Pi.

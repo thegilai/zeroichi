@@ -1,0 +1,47 @@
+#cloud-config
+# Zero Ichi first-boot setup (processed once by cloud-init on Raspberry Pi OS).
+# You may change the password below with any text editor before first boot.
+
+hostname: zeroichi
+manage_etc_hosts: true
+
+users:
+  - name: pi
+    groups: users,adm,dialout,audio,netdev,video,plugdev,input,gpio,spi,i2c,render,sudo
+    shell: /bin/bash
+    lock_passwd: false
+    plain_text_passwd: zeroichi
+    sudo: ALL=(ALL) NOPASSWD:ALL
+
+rpi:
+  spi: true
+
+write_files:
+  - path: /etc/systemd/system/zeroichi.service
+    permissions: "0644"
+    content: |
+      [Unit]
+      Description=Zero Ichi toy camera
+      RequiresMountsFor=/boot/firmware
+      After=local-fs.target
+
+      [Service]
+      Environment=PYTHONDONTWRITEBYTECODE=1
+      WorkingDirectory=/boot/firmware/zeroichi
+      ExecStart=/usr/bin/python3 /boot/firmware/zeroichi/zeroichi.py
+      Restart=always
+      RestartSec=5
+
+      [Install]
+      WantedBy=multi-user.target
+
+runcmd:
+  - mkdir -p /boot/firmware/photos
+  - raspi-config nonint do_spi 0 || true
+  - systemctl daemon-reload
+  - systemctl enable zeroichi.service
+
+power_state:
+  mode: reboot
+  message: Zero Ichi setup finished - rebooting
+  condition: true
